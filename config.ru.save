@@ -1,0 +1,2 @@
+xrequire './app'
+run Sinatra::Application
