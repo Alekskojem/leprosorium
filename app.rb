@@ -41,6 +41,11 @@ post '/new' do
 # Получаем переменную из Post запроса /new
 # (браузер отправляет страницу на сервер)
  content = params[:content]
+ 
+ if content.length <= 0
+    @error = 'Type post text'
+    return erb :new
+ end
 erb "You taped #{content}"
 end
 
