@@ -8,18 +8,18 @@ def init_db
 end
 
 before do
-	init_do
+	init_db
 end
 
 configure do
-	init_db
-db.execute 'CREATE TABLE IF NOT EXISTS Post
+	 init_db
+   @db.execute 'CREATE TABLE IF NOT EXISTS Post
 (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	created_date DATE,
 	content TEXT
 )'
-
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
@@ -33,4 +33,4 @@ post '/new' do
  content = params[:content]
 erb "You taped #{content}"
 end
-end
+
