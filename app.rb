@@ -49,7 +49,8 @@ post '/new' do
  end
 # Сохранение данних в БД
  @db.execute 'insert into Post (content, created_date) values (?, datetime())', [content]
+# Перенаправление на первую страницу
 
-erb "You taped #{content}"
+redirect to '/'
 end
 
