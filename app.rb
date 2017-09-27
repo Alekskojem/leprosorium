@@ -43,9 +43,12 @@ post '/new' do
  content = params[:content]
  
  if content.length <= 0
-    @error = 'Type post text'
+    @error = 'Type text'
     return erb :new
  end
+
+ @db.execute 'insert into Post (content, created_date) values (?, datetime())', [content]
+
 erb "You taped #{content}"
 end
 
