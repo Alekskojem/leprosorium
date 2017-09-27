@@ -30,6 +30,7 @@ end
 # обработчик get запроса /new
 # (браузер получает страницу с сервера)
 get '/' do
+  @results = @db.execute 'select * from Post order by id desc'
 	erb :index			
 end
 
