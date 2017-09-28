@@ -25,6 +25,15 @@ configure do
 	created_date DATE,
 	content TEXT
 )'
+
+#Создаем таблицу
+
+ @db.execute 'CREATE TABLE IF NOT EXISTS Comments
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_date DATE,
+  content TEXT
+)'
 end
 
 # обработчик get запроса /new
@@ -66,5 +75,13 @@ get '/details/:post_id' do
   # Вибираем єтот один пост в переменную @row
   @row = results[0]
   #Возвращаем представление details.erb
-  erb :details
+  erb :details    
 end
+# Обработчик post-запроса отправка данніх на сервер
+post '/details/:post_id' do
+  post_id = params[:post_id]
+
+  content = params[:content]
+ 
+  erb "You typed comment #{comment} for post #{post_id}"
+  end
