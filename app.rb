@@ -75,6 +75,10 @@ get '/details/:post_id' do
   
   # Вибираем єтот один пост в переменную @row
   @row = results[0]
+  
+  #вибираем комметарии для нашего поста
+  @comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+
   #Возвращаем представление details.erb
   erb :details    
 end
@@ -94,6 +98,7 @@ post '/details/:post_id' do
   datetime(),
   ?
   )', [content, post_id]
+
+  redirect to('/details/' + post_id)     
  
-  erb "You typed comment #{comment} for post #{post_id}"
-  end
+   end
